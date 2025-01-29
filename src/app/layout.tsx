@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { ClerkProvider } from '@clerk/nextjs';
 import './globals.css';
 import { Navigation } from './components/navigation';
 
@@ -24,21 +25,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <header className="bg-slate-900 text-white p-4 text-center">
-          {/* <p>Next.js 15 Sandbox</p> */}
-          <Navigation />
-        </header>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <header className="bg-slate-900 text-white p-4 text-center">
+            {/* <p>Next.js 15 Sandbox</p> */}
+            <Navigation />
+          </header>
 
-        {children}
+          {children}
 
-        <footer className="bg-slate-900 text-white p-4 text-center">
-          <p>Created January 2025</p>
-        </footer>
-      </body>
-    </html>
+          <footer className="bg-slate-900 text-white p-4 text-center">
+            <p>Created January 2025</p>
+          </footer>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
